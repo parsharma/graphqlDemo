@@ -21,6 +21,16 @@
         allAttendees: [Attendee]
         allSpeakers: [Speaker]
     }
+
+    input SpeakerInput{
+        name:String
+        twitter:String
+    }
+
+    type Mutation{
+        addSpeaker(speaker:SpeakerInput): Speaker
+    }
     schema {
         query: Query
+        mutation: Mutation
     }

@@ -37,4 +37,8 @@ public class SpeakerService {
                 .map(Optional::get)
                 .collect(Collectors.toList());
     }
+
+    public Speaker save(Speaker speaker){
+        return speakerRepository.save(speaker);
+    }
 }

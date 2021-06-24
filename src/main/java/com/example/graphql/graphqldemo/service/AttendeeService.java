@@ -16,4 +16,8 @@ public class AttendeeService {
     public List<Attendee> findAll(){
         return attendeeRepository.findAll();
     }
+
+    public Attendee save(Attendee attendee){
+        return attendeeRepository.save(attendee);
+    }
 }

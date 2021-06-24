@@ -16,4 +16,8 @@ public class TalkService {
     public List<Talk> findAll(){
         return talkRepository.findAll();
     }
+
+    public Talk save(Talk talk){
+        return talkRepository.save(talk);
+    }
 }
