@@ -1,6 +1,7 @@
 package com.example.graphql.graphqldemo;
 
 import com.example.graphql.graphqldemo.resolver.Query;
+import com.example.graphql.graphqldemo.resolver.TalkResolver;
 import com.example.graphql.graphqldemo.service.AttendeeService;
 import com.example.graphql.graphqldemo.service.SpeakerService;
 import com.example.graphql.graphqldemo.service.TalkService;
@@ -36,7 +37,7 @@ public class GraphqldemoApplication {
 	}
 
 	private static GraphQLSchema buildSchema(SpeakerService speakerService, AttendeeService attendeeService, TalkService talkService){
-		return SchemaParser.newParser().file("graphql/schema.graphqls").resolvers(new Query(talkService)).build().makeExecutableSchema();
+		return SchemaParser.newParser().file("graphql/schema.graphqls").resolvers(new Query(talkService,speakerService,attendeeService), new TalkResolver(speakerService)).build().makeExecutableSchema();
 	}
 
 }

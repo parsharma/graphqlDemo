@@ -13,10 +13,13 @@
         id:ID!
         title:String
         description:String
+        speakers: [Speaker]
     }
 
     type Query {
         allTalks: [Talk]
+        allAttendees: [Attendee]
+        allSpeakers: [Speaker]
     }
     schema {
         query: Query
