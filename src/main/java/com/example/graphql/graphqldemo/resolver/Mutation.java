@@ -5,11 +5,15 @@ import com.example.graphql.graphqldemo.pojo.Speaker;
 import com.example.graphql.graphqldemo.pojo.SpeakerInput;
 import com.example.graphql.graphqldemo.service.SpeakerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
-@RequiredArgsConstructor
+import javax.annotation.Resource;
+
+@Component
 public class Mutation implements GraphQLMutationResolver {
 
-    private final SpeakerService speakerService;
+    @Resource
+    private  SpeakerService speakerService;
 
     public Speaker addSpeaker(SpeakerInput speakerInput) {
         Speaker speaker = new Speaker();

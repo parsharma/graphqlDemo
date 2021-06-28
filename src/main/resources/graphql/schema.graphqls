@@ -16,6 +16,11 @@
         speakers: [Speaker]
     }
 
+    type Score{
+        title: String
+        score: Int
+    }
+
     type Query {
         allTalks: [Talk]
         allAttendees: [Attendee]
@@ -30,7 +35,12 @@
     type Mutation{
         addSpeaker(speaker:SpeakerInput): Speaker
     }
+
+    type Subscription {
+        scores(title: String): Score
+    }
     schema {
         query: Query
         mutation: Mutation
+        subscription: Subscription
     }
