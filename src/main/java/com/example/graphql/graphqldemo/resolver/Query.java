@@ -7,21 +7,27 @@ import com.example.graphql.graphqldemo.pojo.Talk;
 import com.example.graphql.graphqldemo.service.AttendeeService;
 import com.example.graphql.graphqldemo.service.SpeakerService;
 import com.example.graphql.graphqldemo.service.TalkService;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 
+@Component
 public class Query implements GraphQLQueryResolver {
 
-    private final TalkService talkService;
-    private final SpeakerService speakerService;
-    private final AttendeeService attendeeService;
+    @Resource
+    private  TalkService talkService;
+    @Resource
+    private  SpeakerService speakerService;
+    @Resource
+    private  AttendeeService attendeeService;
 
-    public Query(TalkService talkService, SpeakerService speakerService, AttendeeService attendeeService) {
+    /*public Query(TalkService talkService, SpeakerService speakerService, AttendeeService attendeeService) {
         this.talkService = talkService;
         this.speakerService = speakerService;
         this.attendeeService = attendeeService;
-    }
+    }*/
 
     public List<Talk> allTalks() {
         return talkService.findAll();

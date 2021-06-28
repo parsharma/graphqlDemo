@@ -2,6 +2,7 @@ package com.example.graphql.graphqldemo;
 
 import com.example.graphql.graphqldemo.resolver.Mutation;
 import com.example.graphql.graphqldemo.resolver.Query;
+import com.example.graphql.graphqldemo.resolver.Subscription;
 import com.example.graphql.graphqldemo.resolver.TalkResolver;
 import com.example.graphql.graphqldemo.service.AttendeeService;
 import com.example.graphql.graphqldemo.service.SpeakerService;
@@ -18,20 +19,20 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class GraphqldemoApplication {
 
-	@Autowired
+	/*@Autowired
 	private SpeakerService speakerService;
 
 	@Autowired
 	private TalkService talkService;
 
 	@Autowired
-	private AttendeeService attendeeService;
+	private AttendeeService attendeeService;*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(GraphqldemoApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	public ServletRegistrationBean graphQLServlet() {
 		return new ServletRegistrationBean(SimpleGraphQLHttpServlet.newBuilder(buildSchema( speakerService,  attendeeService,  talkService)).build(),
 				"/graphql");
@@ -39,7 +40,7 @@ public class GraphqldemoApplication {
 
 	private static GraphQLSchema buildSchema(SpeakerService speakerService, AttendeeService attendeeService, TalkService talkService){
 		return SchemaParser.newParser().file("graphql/schema.graphqls").resolvers(new Query(talkService,speakerService,attendeeService),
-				new TalkResolver(speakerService), new Mutation(speakerService)).build().makeExecutableSchema();
-	}
+				new TalkResolver(speakerService), new Mutation(speakerService), new Subscription()).build().makeExecutableSchema();
+	}*/
 
 }
