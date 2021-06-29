@@ -15,10 +15,6 @@ public class TalkResolver implements GraphQLResolver<Talk> {
     @Resource
     private  SpeakerService speakerService;
 
-   /* public TalkResolver(SpeakerService speakerService) {
-        this.speakerService = speakerService;
-    }*/
-
     public List<Speaker> speakers (Talk talk){
         return speakerService.findAllSpeakersForTalk(talk);
     }

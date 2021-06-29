@@ -19,6 +19,7 @@ public class Mutation implements GraphQLMutationResolver {
         Speaker speaker = new Speaker();
         speaker.setName(speakerInput.getName());
         speaker.setTwitter(speakerInput.getTwitter());
+
         return speakerService.save(speaker);
     }
 }

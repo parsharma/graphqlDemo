@@ -2,12 +2,18 @@ package com.example.graphql.graphqldemo.resolver;
 
 import com.coxautodev.graphql.tools.GraphQLSubscriptionResolver;
 import com.example.graphql.graphqldemo.pojo.Score;
+import com.example.graphql.graphqldemo.pojo.Speaker;
+import com.example.graphql.graphqldemo.repository.SpeakerRepository;
+import com.example.graphql.graphqldemo.service.SpeakerService;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Observable;
 import io.reactivex.observables.ConnectableObservable;
 import org.reactivestreams.Publisher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -15,22 +21,20 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class Subscription implements GraphQLSubscriptionResolver {
 
-    public Publisher<Score> scores(final String title){
-        Observable<Score> observable = Observable.create( e-> {
-            ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
-            scheduledExecutorService.scheduleAtFixedRate(()-> {
+    public Publisher<Score> talkScores(final String title) {
+        Observable<Score> observable = Observable.create(e -> {
+            ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+            executorService.scheduleAtFixedRate(() -> {
                 Score s = Score.builder()
                         .title(title)
-                        .score((int) Math.floor(Math.random()*5))
+                        .score(Integer.valueOf((int) Math.floor(Math.random()*10)))
                         .build();
                 e.onNext(s);
             }, 0, 2, TimeUnit.SECONDS);
-
         });
 
-            ConnectableObservable connect = observable.share().publish();
-            connect.connect();
-            return connect.toFlowable(BackpressureStrategy.BUFFER);
-
+        ConnectableObservable connectableObservable = observable.share().publish();
+        connectableObservable.connect();
+        return connectableObservable.toFlowable(BackpressureStrategy.BUFFER);
     }
 }

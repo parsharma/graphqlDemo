@@ -23,11 +23,6 @@ public class Query implements GraphQLQueryResolver {
     @Resource
     private  AttendeeService attendeeService;
 
-    /*public Query(TalkService talkService, SpeakerService speakerService, AttendeeService attendeeService) {
-        this.talkService = talkService;
-        this.speakerService = speakerService;
-        this.attendeeService = attendeeService;
-    }*/
 
     public List<Talk> allTalks() {
         return talkService.findAll();

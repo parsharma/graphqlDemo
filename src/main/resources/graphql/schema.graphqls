@@ -37,7 +37,7 @@
     }
 
     type Subscription {
-        scores(title: String): Score
+        talkScores(title: String): Score
     }
     schema {
         query: Query
