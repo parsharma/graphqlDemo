@@ -2,14 +2,10 @@ package com.example.graphql.graphqldemo.resolver;
 
 import com.coxautodev.graphql.tools.GraphQLSubscriptionResolver;
 import com.example.graphql.graphqldemo.pojo.Score;
-import com.example.graphql.graphqldemo.pojo.Speaker;
-import com.example.graphql.graphqldemo.repository.SpeakerRepository;
-import com.example.graphql.graphqldemo.service.SpeakerService;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Observable;
 import io.reactivex.observables.ConnectableObservable;
 import org.reactivestreams.Publisher;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
